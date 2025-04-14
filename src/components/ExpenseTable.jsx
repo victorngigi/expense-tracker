@@ -6,6 +6,7 @@ function ExpenseTable({ expenses, deleteExpense }) {
             <th>Description</th>
             <th>Amount</th>
             <th>Category</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -15,6 +16,7 @@ function ExpenseTable({ expenses, deleteExpense }) {
               <td>{expense.description}</td>
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
+              <td>{expense.date}</td>
               <td>
                 <button onClick={() => deleteExpense(expense.id)}>Delete</button>
               </td>
@@ -25,5 +27,4 @@ function ExpenseTable({ expenses, deleteExpense }) {
     );
   }
   
-  export default ExpenseTable;
-  
+export default ExpenseTable;
