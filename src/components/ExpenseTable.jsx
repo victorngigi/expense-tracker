@@ -3,6 +3,7 @@ function ExpenseTable({ expenses, deleteExpense }) {
       <table>
         <thead>
           <tr>
+            <th>Expense</th>
             <th>Description</th>
             <th>Amount</th>
             <th>Category</th>
@@ -13,6 +14,7 @@ function ExpenseTable({ expenses, deleteExpense }) {
         <tbody>
           {expenses.map((expense) => (
             <tr key={expense.id}>
+              <td>{expense.expense}</td>
               <td>{expense.description}</td>
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
