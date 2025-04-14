@@ -1,34 +1,43 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import React, {useState} from "react";
+import ExpenseTable from "./components/ExpenseTable";
+import ExpenseForm from "./components/ExpenseForm";
+import SearchBar from "./components/SearchBar"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [expenses, setExpenses] = useState([]);
+  const [SearchTerm, setSearchTerm] = useState("");
+  const addExpense = (expense) => {
+    setExpenses([...expenses, expense]);
+  };
+
+  const deleteExpense = (id) => {
+    setExpenses(expenses.filter((e) => e.id !== id));
+  };
+
+  const filteredExpenses = expenses.filter(
+    (expense) =>
+      expense.description.toLowerCase().includes(SearchTerm.toLowerCase()) ||
+      expense.category.toLowerCase().includes(SearchTerm.toLowerCase())
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <h1>Expense Tracker</h1>
+      <SearchBar searchTerm={SearchTerm} setSearchTerm={setSearchTerm} />
+      <div className="main-content">
+        <div className="form-section">
+          
+        </div>
+        <div className="teble-section">
+
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <ExpenseForm addExpense={addExpense} />
+      <ExpenseTable expenses={filteredExpenses} deleteExpense={deleteExpense} />
+    </div>
   )
 }
 
