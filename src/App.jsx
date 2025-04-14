@@ -1,5 +1,3 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import React, {useState} from "react";
 import ExpenseTable from "./components/ExpenseTable";
@@ -9,6 +7,7 @@ import SearchBar from "./components/SearchBar"
 function App() {
   const [expenses, setExpenses] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
+
   const addExpense = (expense) => {
     setExpenses([...expenses, expense]);
   };
@@ -24,21 +23,19 @@ function App() {
   );
 
   return (
-    <div className="app">
+    <div>
       <h1>Expense Tracker</h1>
       <SearchBar searchTerm={SearchTerm} setSearchTerm={setSearchTerm} />
       <div className="main-content">
         <div className="form-section">
-          
+          <ExpenseForm addExpense={addExpense} />
         </div>
-        <div className="teble-section">
-
+        <div className="table-section">
+          <ExpenseTable expenses={filteredExpenses} deleteExpense={deleteExpense} />
         </div>
       </div>
-      <ExpenseForm addExpense={addExpense} />
-      <ExpenseTable expenses={filteredExpenses} deleteExpense={deleteExpense} />
     </div>
   )
 }
 
-export default App
+export default App;
